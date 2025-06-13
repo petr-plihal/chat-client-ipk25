@@ -1,0 +1,59 @@
+# https://dreampuf.github.io/GraphvizOnline
+
+digraph client_fsm {
+	fontname = "Consolas"
+    label = "Client FSM (Mealy machine)"
+    labelloc = "t"
+    nodesep = .4
+
+    #splines = ortho
+    rankdir = LR
+
+    # states
+	node [shape = circle];
+    s [style = invis]
+    start
+    open
+    auth
+    join
+
+    # final states
+	node [shape = doublecircle];
+    end
+
+    s -> start
+    start -> auth [label = < <font color="red">_</font>  /<font color="blue">AUTH</font>>]
+    auth -> auth [
+        taillabel = < <font color="red">!REPLY</font>  /<font color="blue">AUTH</font> >
+        labelangle = 12
+        labeldistance = 4.5
+    ]
+    auth -> open [label = < <font color="red">REPLY</font>  /<font color="blue">_</font>>]
+
+    auth -> end [label = <
+        <font color="red">ERR, BYE</font>  /<font color="blue">_</font>
+        <br/><font color="red">MSG</font>  /<font color="blue">ERR</font>
+        <br/><font color="red">_</font>  /<font color="blue">BYE</font>
+    >]
+    open -> end [label = <
+        <font color="red">ERR, BYE</font>  /<font color="blue">_</font>
+        <br/><font color="red">*REPLY</font>  /<font color="blue">ERR</font>
+        <br/><font color="red">_</font>  /<font color="blue">BYE</font>
+    >]
+    join -> end [label = <
+        <font color="red">ERR, BYE</font>  /<font color="blue">_</font>
+        <br/><font color="red">_</font>  /<font color="blue">BYE</font>
+    >]
+    start -> end [label = <
+        <font color="red">ERR, BYE</font>  /<font color="blue">_</font>
+        <br/><font color="red">_</font>  /<font color="blue">BYE</font>
+    >]
+
+    open -> open [label = <
+        <font color="red">MSG</font>  /<font color="blue">_</font>
+        <br/><font color="red">_</font>  /<font color="blue">MSG</font>
+    >]
+    open -> join [label = < <font color="red">_</font>  /<font color="blue">JOIN</font>>]
+    join -> join [label = < <font color="red">MSG</font>  /<font color="blue">_</font>>]
+    join -> open [label = < <font color="red">*REPLY</font>  /<font color="blue">_</font>>]
+}

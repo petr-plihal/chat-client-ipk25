@@ -1,0 +1,41 @@
+# https://sequencediagram.org/
+
+fontfamily consolas
+
+title UDP Server Termination
+
+participant "Client:dynamic" as c1
+participant "Server:4567" as s
+participant "Server:dynamic" as s1
+participantspacing 2
+
+note over c1,s1: Previous communiation...
+space 0
+
+activate s1
+s1 ->(1) c1: 42,BYE
+activate c1
+c1 --x(1) s1: 42,CONFIRM
+
+note over c1: Client waits for the\npossible retransmit
+
+space -2
+s1 ->(1) c1: 42,BYE
+c1 ->(1) s1: 42,CONFIRM
+
+space
+deactivate s1
+space -4
+s1 -->> s1: <<close socket>>
+
+space -6
+note over c1: Client waits for the\npossible retransmit
+
+c1 -->> c1: <<close socket>>
+
+deactivate c1
+space
+
+space -4
+== End of communiation ==
+space -3

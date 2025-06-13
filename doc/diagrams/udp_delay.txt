@@ -1,0 +1,41 @@
+# https://sequencediagram.org/
+
+fontfamily consolas
+
+title UDP Packet Delay/Duplication
+
+participant "Client" as c1
+participant "Server" as s
+participantspacing 3
+
+note over c1,s: Previous communication...
+
+space 0
+
+activate c1
+c1 ->(14) s: 13,MESSAGE
+space -13
+abox left of c1: Timeout expired
+space -4.5
+c1 ->(1) s: 13,MESSAGE
+
+activate s
+space -2
+s -->> s: <processing>
+# ] -> s:
+s ->(1) c1: 13,CONFIRM
+deactivate s
+deactivate c1
+
+space -1
+activate s
+abox right of s: No action is taken,\nbut confirmation is sent
+space -2
+s ->(1) c1: 13,CONFIRM
+deactivate s
+space -3
+abox left of c1: This message was \nalready confirmed\nno action is necessary
+space -2
+
+note over c1,s: Following communication...
+space -3

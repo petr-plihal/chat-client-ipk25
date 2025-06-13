@@ -1,0 +1,53 @@
+# https://sequencediagram.org/
+
+fontfamily consolas
+
+title UDP Client Initialization
+
+participant "Client:dynamic" as c1
+participant "Server:4567" as s
+participant "Server:dynamic" as s1
+participantspacing 2
+
+== Beginning of communication ==
+
+space -1
+
+activate c1
+c1 ->(1) s: 0, AUTH
+activate s
+s -->> s1: <<open socket>>
+activate s1
+s ->(1) c1: 0, CONFIRM
+deactivate s
+deactivate c1
+
+space -1
+
+s1 ->(1) c1: 0, 0, REPLY OK
+activate c1
+c1 ->(1) s1: 0, CONFIRM
+deactivate s1
+deactivate c1
+
+space -1
+
+activate c1
+c1 ->(1) s1: 1, JOIN
+activate s1
+s1 ->(1) c1: 1, CONFIRM
+deactivate s1
+deactivate c1
+
+space -1
+
+activate s1
+s1 ->(1) c1: 1, 1, REPLY OK
+activate c1
+c1 ->(1) s1: 1, CONFIRM
+deactivate s1
+deactivate c1
+
+note over c1,s1: Following communication ...
+
+space -3

@@ -1,0 +1,38 @@
+# https://sequencediagram.org/
+
+fontfamily consolas
+
+title UDP Packet Loss
+
+participant "Client" as c1
+participant "Server" as s
+participantspacing 2
+
+note over c1,s: Previous communication...
+space 0
+
+activate c1
+c1 ->(1) s: 2,MESSAGE
+activate s
+abox left of c1: Waiting for timeout
+space -6
+s -->> s: <processing>
+# ] -> s:
+s --x(1) c1: 2,CONFIRM
+deactivate s
+
+c1 --x(1) s: 2,MESSAGE
+abox left of c1: Waiting for timeout
+
+c1 ->(1) s: 2,MESSAGE
+activate s
+abox left of c1: Waiting for timeout
+space -5
+abox right of s: No action is taken\nbut confirmation is sent
+space -2
+s ->(1) c1: 2,CONFIRM
+deactivate s
+deactivate c1
+
+note over c1,s: Following communication...
+space 0
