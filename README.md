@@ -6,6 +6,8 @@
 ## Description
 Client application for communicating with a chat server using a custom `IPK25-CHAT` protocol. The project implements the TCP variant of the protocol, handling connection setup, authentication, joining channels, sending and receiving messages, and graceful termination. The design anticipates extension to the UDP variant. The implementation uses object-oriented design and state/strategy design patterns.
 
+[Technical Documentation](doc/documentation.md) is in form of markdown in `doc/` directory.
+
 ---
 
 ## Usage

@@ -31,11 +31,11 @@ The implementation utilizes the *State* design pattern for client's state (`src\
 
 ### UML Class diagram
 Below is the UML class diagram for the project:
-![UML Class Diagram](docs/diagrams-class_diagram.drawio.svg)
+![UML Class Diagram](diagrams-class_diagram.drawio.svg)
 
 ### Diagram of structures
 Below is a diagram of structures, useful for interpreting types in the class diagram.
-![Structures Diagram](docs/diagrams-structures.drawio.svg)
+![Structures Diagram](diagrams-structures.drawio.svg)
 
 ### Extra Features
  - Usage of the assignment provided logging messages through out the program.
